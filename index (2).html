@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swathi Susarla — Product Designer</title>
+<meta name="description" content="Swathi Susarla — Product Designer. UX/UI for enterprise SaaS, fintech and operational products.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#17150F;
+    --ink:#EEE9DD;
+    --ink-soft:#A39C8C;
+    --ink-faint:#726B5C;
+    --accent:#4FBF8B;
+    --accent-bg:#1E2B23;
+    --rule:#2B2820;
+    --max:680px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:'Inter',sans-serif; font-size:17px; line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--ink); text-decoration-color:var(--rule); text-underline-offset:3px;}
+  a:hover{color:var(--accent); text-decoration-color:var(--accent);}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+  strong{font-weight:600;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 24px;}
+
+  header.site{padding:28px 0 8px;}
+  header.site nav{
+    max-width:var(--max); margin:0 auto; padding:0 24px;
+    display:flex; align-items:center; justify-content:space-between; font-size:0.95rem;
+  }
+  .logo{font-weight:600; text-decoration:none;}
+  .navlinks{display:flex; gap:22px;}
+  .navlinks a{text-decoration:none; color:var(--ink-soft);}
+  .navlinks a:hover{color:var(--ink);}
+
+  main{padding:56px 0 0;}
+  section{padding:52px 0;}
+  section + section{border-top:1px solid var(--rule);}
+
+  h1{font-size:1.9rem; font-weight:700; margin:0 0 18px; line-height:1.3;}
+  h2{font-size:1.05rem; font-weight:600; margin:0 0 20px; color:var(--ink-soft); text-transform:none;}
+  p{margin:0 0 16px;}
+  p:last-child{margin-bottom:0;}
+
+  .badge{
+    display:inline-flex; align-items:center; gap:7px; font-size:0.88rem;
+    background:var(--accent-bg); color:var(--accent); padding:6px 12px; border-radius:20px;
+    margin-bottom:20px;
+  }
+  .badge .dot{width:7px; height:7px; border-radius:50%; background:var(--accent);}
+
+  .lede{font-size:1.06rem; color:var(--ink-soft); max-width:56ch;}
+  .lede strong{color:var(--ink);}
+
+  .linkline{margin-top:22px; font-size:0.98rem; color:var(--ink-soft);}
+  .linkline a{color:var(--ink); font-weight:500;}
+
+  /* project entries */
+  .project{padding:26px 0; border-top:1px solid var(--rule);}
+  .project:first-of-type{border-top:none; padding-top:0;}
+  .project .tag{
+    font-size:0.8rem; color:var(--accent); background:var(--accent-bg);
+    padding:3px 10px; border-radius:20px; display:inline-block; margin-bottom:10px;
+  }
+  .project h3{font-size:1.2rem; font-weight:600; margin:0 0 8px;}
+  .project h3 a{text-decoration:none;}
+  .project h3 a:hover{color:var(--accent);}
+  .project p{color:var(--ink-soft); max-width:58ch;}
+  .project .know-more{font-size:0.92rem; font-weight:500;}
+  .techrow{margin-top:14px; display:flex; flex-wrap:wrap; gap:8px;}
+  .techrow span{
+    font-size:0.8rem; color:var(--ink-soft); background:#211E17; padding:4px 10px; border-radius:20px;
+  }
+
+  .facts-inline{margin-top:18px; font-size:0.95rem; color:var(--ink-soft);}
+  .facts-inline b{color:var(--ink); font-weight:600;}
+
+  .resume-cta{
+    display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
+    background:var(--accent-bg); border-radius:10px; padding:22px 26px; margin-top:24px;
+  }
+  .btn{
+    display:inline-block; padding:11px 20px; border-radius:8px; text-decoration:none;
+    font-size:0.95rem; font-weight:600; background:var(--accent); color:#0F1610; white-space:nowrap;
+  }
+  .btn:hover{background:#6ED4A3; color:#0F1610;}
+
+  footer{padding:52px 0 64px; border-top:1px solid var(--rule);}
+  footer .foot-links{display:flex; gap:20px; flex-wrap:wrap; font-size:0.95rem; margin-bottom:22px;}
+  footer .foot-meta{font-size:0.88rem; color:var(--ink-faint);}
+  footer .foot-meta div + div{margin-top:4px;}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <nav>
+    <a class="logo" href="#top">Swathi</a>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#resume">Resume</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+  <div class="wrap">
+
+    <!-- HERO -->
+    <section id="about">
+      <div class="badge"><span class="dot"></span>Open to product design roles</div>
+      <h1>Hey, I'm Swathi 👋</h1>
+      <p class="lede">I'm a <strong>Product Designer</strong> from Hyderabad, India, currently working at <strong>Lexodd Hypernova Pvt. Ltd.</strong> — designing SaaS dashboards, operational workflows and data-rich interfaces, and trying to make dense, high-stakes information a little easier to act on.</p>
+      <p class="lede">Outside client work, I design independent concept case studies for domains I find genuinely interesting — right now that's AML compliance and supply-chain operations — and I'm partway through an MBA in IT &amp; Fintech Management, because I like understanding the business side of what I design for.</p>
+      <div class="linkline">
+        Want to talk shop? <a href="mailto:swathirssusarla@gmail.com">Email me</a> — or find me on
+        <a href="https://www.linkedin.com/in/swathi-susarla" target="_blank" rel="noopener">LinkedIn</a>,
+        <a href="https://www.behance.net/swathisusarla" target="_blank" rel="noopener">Behance</a> and
+        <a href="https://github.com/nezukosrs-lab" target="_blank" rel="noopener">GitHub</a> — all real, all linked below too.
+      </div>
+    </section>
+
+    <!-- PROFESSIONAL WORK -->
+    <section id="experience">
+      <h2>Professional work</h2>
+      <p>Currently, I'm a <strong>UI/UX &amp; Visual Designer at Lexodd Hypernova Pvt. Ltd.</strong>, designing scalable SaaS dashboards and chatbot interfaces with reusable component libraries, running usability testing on key flows, and working design-system governance into day-to-day Agile sprints with product and engineering.</p>
+      <p>Before that, I was a <strong>UI/UX Designer at Techboox</strong>, translating ambiguous business requirements into user flows, wireframes and polished UI for enterprise and consumer platforms — including a full onboarding and dashboard redesign focused on clearer navigation and product adoption.</p>
+      <p>I also spent time as a <strong>freelance UI/UX &amp; Graphic Designer with The Digital Arm</strong>, designing an end-to-end mobile experience for an AR/VR product — onboarding, core interaction flows, errors, empty states, and the micro-interactions that make spatial interfaces feel considered.</p>
+      <p class="facts-inline"><b>Education —</b> MBA (in progress), IT &amp; Fintech Management &amp; Analytics, Manipal University Jaipur (2025–2027); B.Sc. in Animation (Minor: Computer Science), Aditya Degree College.<br>
+      <b>Certifications —</b> IBM Enterprise Design Thinking (Practitioner &amp; Co-Creator); IxDF — AI for Designers, Mobile UX Design, Portfolio Strategy. Top 10% Global IxDF Learner, IxDF Social Impact Award.</p>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="work">
+      <h2>Selected work</h2>
+
+      <div class="project">
+        <span class="tag">Independent Concept · Fintech</span>
+        <h3><a href="https://nezukosrs-lab.github.io/nexus-aml-case-study/" target="_blank" rel="noopener">Nexus — AML Intelligence Hub</a></h3>
+        <p>A self-initiated concept exploring how AML investigation — alerts, transactions, entity relationships, case history — could be organised around the decisions analysts and compliance managers actually need to make, rather than around raw data. Five linked experiences, from alert triage through to audit trail.</p>
+        <p class="know-more"><a href="https://nezukosrs-lab.github.io/nexus-aml-case-study/" target="_blank" rel="noopener">Know more →</a></p>
+        <div class="techrow"><span>Figma</span><span>FigJam</span><span>Figma AI Make</span><span>Design Systems</span></div>
+      </div>
+
+      <div class="project">
+        <span class="tag">Independent Concept · Supply Chain</span>
+        <h3><a href="https://nezukosrs-lab.github.io/orbit-supply-chain-war-room/" target="_blank" rel="noopener">Orbit — Supply Chain War Room</a></h3>
+        <p>A conceptual command centre bringing fragmented supply-chain signals — shipments, vendors, inventory, disruptions — into one operational view, so teams can move from "what happened" to "what should we do next." Five screens, including an honest, uncertainty-aware take on vendor risk scoring.</p>
+        <p class="know-more"><a href="https://nezukosrs-lab.github.io/orbit-supply-chain-war-room/" target="_blank" rel="noopener">Know more →</a></p>
+        <div class="techrow"><span>Figma</span><span>FigJam</span><span>Data Visualization</span><span>UX Research</span></div>
+      </div>
+
+      <div class="project">
+        <span class="tag">Live Product · Client (NDA)</span>
+        <h3><a href="https://nezukosrs-lab.github.io/connect2uni-liveproject/" target="_blank" rel="noopener">Connect2Uni</a></h3>
+        <p>End-to-end student experience for an international study-abroad platform — university discovery, applications, documents, payments and status tracking across web, iOS and Android.</p>
+        <p class="know-more"><a href="https://nezukosrs-lab.github.io/connect2uni-liveproject/" target="_blank" rel="noopener">Know more →</a> · <a href="https://www.connect2uni.com/" target="_blank" rel="noopener">Live site ↗</a></p>
+        <div class="techrow"><span>Figma</span><span>Design Handoff</span><span>Web &amp; Mobile</span></div>
+      </div>
+
+      <div class="project">
+        <span class="tag">Live Product · Client</span>
+        <h3><a href="https://nezukosrs-lab.github.io/fuel-genie-liveproject/" target="_blank" rel="noopener">FuelGenie</a></h3>
+        <p>Mobile fuel-ordering journey from onboarding through delivery-location, product discovery, fuel selection, order confirmation and live tracking — designed for clarity at every step of a multi-stage order.</p>
+        <p class="know-more"><a href="https://nezukosrs-lab.github.io/fuel-genie-liveproject/" target="_blank" rel="noopener">Know more →</a> · <a href="https://www.fuelgenie.in/" target="_blank" rel="noopener">Live site ↗</a></p>
+        <div class="techrow"><span>Figma</span><span>Mobile UX</span><span>Prototyping</span></div>
+      </div>
+
+      <div class="project">
+        <span class="tag">Live Product · Client</span>
+        <h3><a href="https://nezukosrs-lab.github.io/srikrishna-liveproject/" target="_blank" rel="noopener">Sri Krishna CT Scan</a></h3>
+        <p>Full site UX/UI for a diagnostic imaging centre — service discovery, trust-building content and a direct path from browsing services to booking an appointment.</p>
+        <p class="know-more"><a href="https://nezukosrs-lab.github.io/srikrishna-liveproject/" target="_blank" rel="noopener">Know more →</a> · <a href="https://www.srikrishnactscan.com/" target="_blank" rel="noopener">Live site ↗</a></p>
+        <div class="techrow"><span>Figma</span><span>Responsive Design</span><span>Healthcare</span></div>
+      </div>
+
+      <p class="lede" style="margin-top:8px; font-size:0.95rem;">Also in progress: <strong>Kodo</strong> (onboarding &amp; key flows for a micro-savings and UPI fintech concept) and a website for <strong>Kota Neelima</strong>. Case study links coming soon.</p>
+    </section>
+
+    <!-- WHAT MAKES ME DIFFERENT -->
+    <section id="beyond">
+      <h2>Beyond the screen</h2>
+      <p>I came into product design through an animation degree, which is probably why I still think in motion and sequence even when I'm designing something as static as a dashboard. That, plus a growing interest in fintech and compliance, is what pulled me toward the messy, data-heavy end of B2B SaaS — case management, risk, operations — where the real design problem is usually deciding what <em>not</em> to show someone.</p>
+      <p>I also host <strong>"UX With a Side of Swathi,"</strong> a UX podcast on Spotify, and spend a fair amount of time on the Interaction Design Foundation — enough to land in their top 10% of global learners and pick up a Social Impact Award along the way.</p>
+    </section>
+
+    <!-- RESUME -->
+    <section id="resume">
+      <h2>Resume</h2>
+      <p>Everything above, plus the full skills and tools list, in one PDF — for hiring managers, or anyone who just prefers paper.</p>
+      <div class="resume-cta">
+        <p style="margin:0; color:var(--ink-soft); font-size:0.95rem;">Swathi_Susarla_Product_Designer_Resume.pdf</p>
+        <a class="btn" href="Swathi_Susarla_Product_Designer_Resume.pdf" download>Download résumé</a>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-links">
+      <a href="mailto:swathirssusarla@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/swathi-susarla" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.behance.net/swathisusarla" target="_blank" rel="noopener">Behance</a>
+      <a href="https://github.com/nezukosrs-lab" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <div class="foot-meta">
+      <div>Designed by Swathi Susarla</div>
+      <div>Hyderabad, India</div>
+      <div>© 2026. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
