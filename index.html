@@ -33,19 +33,48 @@
   strong{font-weight:600;}
   .wrap{max-width:var(--max); margin:0 auto; padding:0 24px;}
 
-  header.site{padding:28px 0 8px;}
+  header.site{
+    padding:20px 0; position:sticky; top:0; z-index:100;
+    background:rgba(23,21,15,0.92); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--rule);
+  }
   header.site nav{
     max-width:var(--max); margin:0 auto; padding:0 24px;
     display:flex; align-items:center; justify-content:space-between; font-size:0.95rem;
   }
   .logo{font-weight:600; text-decoration:none;}
-  .navlinks{display:flex; gap:22px;}
+  .navlinks{display:flex; align-items:center; gap:22px;}
   .navlinks a{text-decoration:none; color:var(--ink-soft);}
   .navlinks a:hover{color:var(--ink);}
 
+  .dropdown{position:relative;}
+  .dropdown-toggle{display:inline-flex; align-items:center; gap:4px; cursor:pointer; background:none; border:none; font:inherit; color:var(--ink-soft); padding:0;}
+  .dropdown-toggle:hover{color:var(--ink);}
+  .dropdown-toggle .caret{font-size:0.7em; transition:transform 0.15s ease;}
+  .dropdown.open .dropdown-toggle .caret{transform:rotate(180deg);}
+  .dropdown-menu{
+    position:absolute; top:calc(100% + 12px); left:50%; transform:translateX(-50%);
+    background:var(--bg); border:1px solid var(--rule); border-radius:10px; padding:8px;
+    min-width:170px; display:none; flex-direction:column; gap:2px; box-shadow:0 10px 30px rgba(0,0,0,0.35);
+  }
+  .dropdown.open .dropdown-menu{display:flex;}
+  .dropdown-menu a{padding:8px 10px; border-radius:6px; font-size:0.9rem; color:var(--ink-soft); white-space:nowrap;}
+  .dropdown-menu a:hover{background:var(--accent-bg); color:var(--accent);}
+
+  .back-to-top{
+    position:fixed; right:22px; bottom:22px; width:46px; height:46px; border-radius:50%;
+    background:var(--accent); color:#0F1610; border:none; font-size:1.15rem; font-weight:700;
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    box-shadow:0 6px 18px rgba(0,0,0,0.4); z-index:90; opacity:0; visibility:hidden;
+    transform:translateY(8px); transition:opacity 0.2s ease, transform 0.2s ease, background 0.2s ease;
+  }
+  .back-to-top.visible{opacity:1; visibility:visible; transform:translateY(0);}
+  .back-to-top:hover{background:#6ED4A3;}
+
   main{padding:56px 0 0;}
-  section{padding:52px 0;}
+  section{padding:52px 0; scroll-margin-top:88px;}
   section + section{border-top:1px solid var(--rule);}
+  .work-group{scroll-margin-top:88px;}
 
   h1{font-size:1.9rem; font-weight:700; margin:0 0 18px; line-height:1.3;}
   h2{font-size:1.05rem; font-weight:600; margin:0 0 20px; color:var(--ink-soft); text-transform:none;}
@@ -85,6 +114,12 @@
   .facts-inline{margin-top:18px; font-size:0.95rem; color:var(--ink-soft);}
   .facts-inline b{color:var(--ink); font-weight:600;}
 
+  .subhead{margin:0 0 8px; display:flex; align-items:baseline; gap:10px;}
+  .subhead h3{font-size:0.95rem; font-weight:600; color:var(--ink); margin:0; text-transform:uppercase; letter-spacing:0.04em;}
+  .subhead .subhead-note{font-size:0.92rem; color:var(--ink-faint);}
+  .work-group{margin-bottom:8px;}
+  .work-group + .work-group{margin-top:12px;}
+
   .resume-cta{
     display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
     background:var(--accent-bg); border-radius:10px; padding:22px 26px; margin-top:24px;
@@ -96,6 +131,9 @@
   .btn:hover{background:#6ED4A3; color:#0F1610;}
 
   footer{padding:52px 0 64px; border-top:1px solid var(--rule);}
+  footer h2{margin-bottom:12px;}
+  footer .foot-lede{font-size:1.02rem; color:var(--ink-soft); max-width:52ch; margin-bottom:24px;}
+  footer .foot-cta-row{display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:32px;}
   footer .foot-links{display:flex; gap:20px; flex-wrap:wrap; font-size:0.95rem; margin-bottom:22px;}
   footer .foot-meta{font-size:0.88rem; color:var(--ink-faint);}
   footer .foot-meta div + div{margin-top:4px;}
@@ -108,7 +146,14 @@
     <a class="logo" href="#top">Swathi</a>
     <div class="navlinks">
       <a href="#about">About</a>
-      <a href="#work">Work</a>
+      <div class="dropdown" id="work-dropdown">
+        <button class="dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">Work <span class="caret">▾</span></button>
+        <div class="dropdown-menu">
+          <a href="#live-work">Live work</a>
+          <a href="#concept-work">Concept work</a>
+          <a href="#more-work">Additional work</a>
+        </div>
+      </div>
       <a href="#resume">Resume</a>
       <a href="#contact">Contact</a>
     </div>
@@ -146,47 +191,80 @@
     <section id="work">
       <h2>Selected work</h2>
 
+      <div class="work-group" id="live-work">
+        <div class="subhead">
+          <h3>Live work</h3>
+          <span class="subhead-note">Shipped to production, for real clients</span>
+        </div>
+
+        <div class="project">
+          <span class="tag">Live Product · Client (NDA)</span>
+          <h3><a href="https://nezukosrs-lab.github.io/connect2uni-liveproject/" target="_blank" rel="noopener">Connect2Uni</a></h3>
+          <p>End-to-end student experience for an international study-abroad platform — university discovery, applications, documents, payments and status tracking across web, iOS and Android.</p>
+          <p class="know-more"><a href="https://nezukosrs-lab.github.io/connect2uni-liveproject/" target="_blank" rel="noopener">Know more →</a> · <a href="https://www.connect2uni.com/" target="_blank" rel="noopener">Live site ↗</a></p>
+          <div class="techrow"><span>Figma</span><span>Design Handoff</span><span>Web &amp; Mobile</span></div>
+        </div>
+
+        <div class="project">
+          <span class="tag">Live Product · Client</span>
+          <h3><a href="https://nezukosrs-lab.github.io/fuel-genie-liveproject/" target="_blank" rel="noopener">FuelGenie</a></h3>
+          <p>Mobile fuel-ordering journey from onboarding through delivery-location, product discovery, fuel selection, order confirmation and live tracking — designed for clarity at every step of a multi-stage order.</p>
+          <p class="know-more"><a href="https://nezukosrs-lab.github.io/fuel-genie-liveproject/" target="_blank" rel="noopener">Know more →</a> · <a href="https://www.fuelgenie.in/" target="_blank" rel="noopener">Live site ↗</a></p>
+          <div class="techrow"><span>Figma</span><span>Mobile UX</span><span>Prototyping</span></div>
+        </div>
+
+        <div class="project">
+          <span class="tag">Live Product · Client</span>
+          <h3><a href="https://nezukosrs-lab.github.io/srikrishna-liveproject/" target="_blank" rel="noopener">Sri Krishna CT Scan</a></h3>
+          <p>Full site UX/UI for a diagnostic imaging centre — service discovery, trust-building content and a direct path from browsing services to booking an appointment.</p>
+          <p class="know-more"><a href="https://nezukosrs-lab.github.io/srikrishna-liveproject/" target="_blank" rel="noopener">Know more →</a> · <a href="https://www.srikrishnactscan.com/" target="_blank" rel="noopener">Live site ↗</a></p>
+          <div class="techrow"><span>Figma</span><span>Responsive Design</span><span>Healthcare</span></div>
+        </div>
+      </div>
+
+      <div class="work-group" id="concept-work">
+        <div class="subhead">
+          <h3>Concept work</h3>
+          <span class="subhead-note">Self-initiated, independent research</span>
+        </div>
+
+        <div class="project">
+          <span class="tag">Independent Concept · Fintech</span>
+          <h3><a href="https://nezukosrs-lab.github.io/nexus-aml-case-study/" target="_blank" rel="noopener">Nexus — AML Intelligence Hub</a></h3>
+          <p>A self-initiated concept exploring how AML investigation — alerts, transactions, entity relationships, case history — could be organised around the decisions analysts and compliance managers actually need to make, rather than around raw data. Five linked experiences, from alert triage through to audit trail.</p>
+          <p class="know-more"><a href="https://nezukosrs-lab.github.io/nexus-aml-case-study/" target="_blank" rel="noopener">Know more →</a></p>
+          <div class="techrow"><span>Figma</span><span>FigJam</span><span>Figma AI Make</span><span>Design Systems</span></div>
+        </div>
+
+        <div class="project">
+          <span class="tag">Independent Concept · Supply Chain</span>
+          <h3><a href="https://nezukosrs-lab.github.io/orbit-supply-chain-war-room/" target="_blank" rel="noopener">Orbit — Supply Chain War Room</a></h3>
+          <p>A conceptual command centre bringing fragmented supply-chain signals — shipments, vendors, inventory, disruptions — into one operational view, so teams can move from "what happened" to "what should we do next." Five screens, including an honest, uncertainty-aware take on vendor risk scoring.</p>
+          <p class="know-more"><a href="https://nezukosrs-lab.github.io/orbit-supply-chain-war-room/" target="_blank" rel="noopener">Know more →</a></p>
+          <div class="techrow"><span>Figma</span><span>FigJam</span><span>Data Visualization</span><span>UX Research</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADDITIONAL WORK -->
+    <section id="more-work">
+      <h2>Additional work</h2>
+
       <div class="project">
-        <span class="tag">Independent Concept · Fintech</span>
-        <h3><a href="https://nezukosrs-lab.github.io/nexus-aml-case-study/" target="_blank" rel="noopener">Nexus — AML Intelligence Hub</a></h3>
-        <p>A self-initiated concept exploring how AML investigation — alerts, transactions, entity relationships, case history — could be organised around the decisions analysts and compliance managers actually need to make, rather than around raw data. Five linked experiences, from alert triage through to audit trail.</p>
-        <p class="know-more"><a href="https://nezukosrs-lab.github.io/nexus-aml-case-study/" target="_blank" rel="noopener">Know more →</a></p>
-        <div class="techrow"><span>Figma</span><span>FigJam</span><span>Figma AI Make</span><span>Design Systems</span></div>
+        <span class="tag">Live Site · Personal / Author</span>
+        <h3><a href="https://www.kotaneelimapolitical.com/" target="_blank" rel="noopener">Kota Neelima</a></h3>
+        <p>Website design for author and political columnist Kota Neelima — a public-facing site presenting her writing, columns and public work.</p>
+        <p class="know-more"><a href="https://www.kotaneelimapolitical.com/" target="_blank" rel="noopener">Live site ↗</a></p>
+        <div class="techrow"><span>Figma</span><span>Web Design</span><span>Responsive Design</span></div>
       </div>
 
       <div class="project">
-        <span class="tag">Independent Concept · Supply Chain</span>
-        <h3><a href="https://nezukosrs-lab.github.io/orbit-supply-chain-war-room/" target="_blank" rel="noopener">Orbit — Supply Chain War Room</a></h3>
-        <p>A conceptual command centre bringing fragmented supply-chain signals — shipments, vendors, inventory, disruptions — into one operational view, so teams can move from "what happened" to "what should we do next." Five screens, including an honest, uncertainty-aware take on vendor risk scoring.</p>
-        <p class="know-more"><a href="https://nezukosrs-lab.github.io/orbit-supply-chain-war-room/" target="_blank" rel="noopener">Know more →</a></p>
-        <div class="techrow"><span>Figma</span><span>FigJam</span><span>Data Visualization</span><span>UX Research</span></div>
+        <span class="tag">Concept · In Progress · Fintech</span>
+        <h3>Kodo — Onboarding &amp; Key Flows</h3>
+        <p>Onboarding and key flows for a micro-savings and UPI fintech concept, currently in progress — prototyped in Figma Make.</p>
+        <p class="know-more"><a href="https://www.figma.com/make/3QGnTmDB2zwADtRKylkGt6/Onboarding-Screen-Design?t=aIDxgNQBFmHFK7m9-1" target="_blank" rel="noopener">View prototype ↗</a></p>
+        <div class="techrow"><span>Figma Make</span><span>Fintech</span><span>Onboarding</span></div>
       </div>
-
-      <div class="project">
-        <span class="tag">Live Product · Client (NDA)</span>
-        <h3><a href="https://nezukosrs-lab.github.io/connect2uni-liveproject/" target="_blank" rel="noopener">Connect2Uni</a></h3>
-        <p>End-to-end student experience for an international study-abroad platform — university discovery, applications, documents, payments and status tracking across web, iOS and Android.</p>
-        <p class="know-more"><a href="https://nezukosrs-lab.github.io/connect2uni-liveproject/" target="_blank" rel="noopener">Know more →</a> · <a href="https://www.connect2uni.com/" target="_blank" rel="noopener">Live site ↗</a></p>
-        <div class="techrow"><span>Figma</span><span>Design Handoff</span><span>Web &amp; Mobile</span></div>
-      </div>
-
-      <div class="project">
-        <span class="tag">Live Product · Client</span>
-        <h3><a href="https://nezukosrs-lab.github.io/fuel-genie-liveproject/" target="_blank" rel="noopener">FuelGenie</a></h3>
-        <p>Mobile fuel-ordering journey from onboarding through delivery-location, product discovery, fuel selection, order confirmation and live tracking — designed for clarity at every step of a multi-stage order.</p>
-        <p class="know-more"><a href="https://nezukosrs-lab.github.io/fuel-genie-liveproject/" target="_blank" rel="noopener">Know more →</a> · <a href="https://www.fuelgenie.in/" target="_blank" rel="noopener">Live site ↗</a></p>
-        <div class="techrow"><span>Figma</span><span>Mobile UX</span><span>Prototyping</span></div>
-      </div>
-
-      <div class="project">
-        <span class="tag">Live Product · Client</span>
-        <h3><a href="https://nezukosrs-lab.github.io/srikrishna-liveproject/" target="_blank" rel="noopener">Sri Krishna CT Scan</a></h3>
-        <p>Full site UX/UI for a diagnostic imaging centre — service discovery, trust-building content and a direct path from browsing services to booking an appointment.</p>
-        <p class="know-more"><a href="https://nezukosrs-lab.github.io/srikrishna-liveproject/" target="_blank" rel="noopener">Know more →</a> · <a href="https://www.srikrishnactscan.com/" target="_blank" rel="noopener">Live site ↗</a></p>
-        <div class="techrow"><span>Figma</span><span>Responsive Design</span><span>Healthcare</span></div>
-      </div>
-
-      <p class="lede" style="margin-top:8px; font-size:0.95rem;">Also in progress: <strong>Kodo</strong> (onboarding &amp; key flows for a micro-savings and UPI fintech concept) and a website for <strong>Kota Neelima</strong>. Case study links coming soon.</p>
     </section>
 
     <!-- WHAT MAKES ME DIFFERENT -->
@@ -211,6 +289,12 @@
 
 <footer id="contact">
   <div class="wrap">
+    <h2>Let's talk</h2>
+    <p class="foot-lede">Open to product design roles in enterprise SaaS and fintech — if something you saw here fits what you're building, I'd love to hear from you.</p>
+    <div class="foot-cta-row">
+      <a class="btn" href="mailto:swathirssusarla@gmail.com">Email me</a>
+      <a href="https://www.linkedin.com/in/swathi-susarla" target="_blank" rel="noopener">Message on LinkedIn →</a>
+    </div>
     <div class="foot-links">
       <a href="mailto:swathirssusarla@gmail.com">Email</a>
       <a href="https://www.linkedin.com/in/swathi-susarla" target="_blank" rel="noopener">LinkedIn</a>
@@ -224,6 +308,51 @@
     </div>
   </div>
 </footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top" type="button">↑</button>
+
+<script>
+  // Work dropdown toggle
+  (function(){
+    var dropdown = document.getElementById('work-dropdown');
+    var toggle = dropdown.querySelector('.dropdown-toggle');
+
+    toggle.addEventListener('click', function(e){
+      e.stopPropagation();
+      var isOpen = dropdown.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    document.addEventListener('click', function(e){
+      if(!dropdown.contains(e.target)){
+        dropdown.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    dropdown.querySelectorAll('.dropdown-menu a').forEach(function(link){
+      link.addEventListener('click', function(){
+        dropdown.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
+
+  // Back to top button
+  (function(){
+    var btn = document.getElementById('backToTop');
+    window.addEventListener('scroll', function(){
+      if(window.scrollY > 400){
+        btn.classList.add('visible');
+      } else {
+        btn.classList.remove('visible');
+      }
+    });
+    btn.addEventListener('click', function(){
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  })();
+</script>
 
 </body>
 </html>
